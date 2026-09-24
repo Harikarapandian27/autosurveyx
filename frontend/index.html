@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoSurveyX — Intelligent Vehicle Survey Platform</title>
+  <link rel="icon" type="image/png" href="assets/logo-transparent.png">
+  
+  <!-- Modern Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Application Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/wizard.css">
+  <link rel="stylesheet" href="css/studio.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- App Header & Navigation -->
+  <header class="app-header">
+    <div class="brand-container" id="brand-home-btn" title="AutoSurveyX — Intelligent Vehicle Survey Platform">
+      <div class="brand-logo-img-wrap">
+        <img src="assets/logo-transparent.png" alt="AutoSurveyX Logo" class="brand-header-logo">
+      </div>
+      <div class="brand-company-wrap">
+        <img src="assets/company-name-dark.png" alt="AutoSurveyX Intelligent Vehicle Survey Platform" class="brand-header-company">
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <nav class="nav-links" id="header-nav-links">
+      <button class="nav-btn active" id="nav-btn-wizard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"></path></svg>
+        New Assessment
+      </button>
+      <button class="nav-btn" id="nav-btn-pending">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        Pending Claims
+      </button>
+      <button class="nav-btn" id="nav-btn-reports">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+        Survey Reports
+      </button>
+      <button class="nav-btn" id="nav-btn-tasks-files">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+        My Tasks & Files
+      </button>
+      <button class="nav-btn" id="nav-btn-admin-dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+        Admin Dashboard
+      </button>
+    </nav>
+
+    <!-- Theme Palette Selector -->
+    <div class="theme-selector-container" id="theme-selector-container" title="Select UI Color Theme">
+      <span class="theme-label">Theme:</span>
+      <button type="button" class="theme-dot theme-dot-sapphire active" data-theme="sapphire" title="Sapphire Luxe (Default)"></button>
+      <button type="button" class="theme-dot theme-dot-cyan" data-theme="cyan" title="Electric Cyan & Obsidian Glass"></button>
+      <button type="button" class="theme-dot theme-dot-emerald" data-theme="emerald" title="Emerald & Mint Precision"></button>
+      <button type="button" class="theme-dot theme-dot-amber" data-theme="amber" title="Midnight Amber & Gold"></button>
+    </div>
+
+    <!-- User Profile & Logout -->
+    <div class="user-menu hidden" id="header-user-menu">
+      <div class="user-badge">
+        <div class="user-avatar" id="user-avatar-initials">SP</div>
+        <div class="user-details">
+          <span class="user-name" id="user-display-name">Surveyor</span>
+          <span class="role-pill role-surveyor" id="user-role-pill">surveyor</span>
+        </div>
+      </div>
+      <button class="btn-logout" id="btn-logout">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        Logout
+      </button>
+    </div>
+  </header>
+
+  <!-- AUTHENTICATION SCREEN (LOGIN / REGISTER) -->
+  <main class="auth-wrapper" id="auth-screen">
+    <div class="auth-card">
+      <!-- Interactive Logo Watermark Centered Directly Behind ID and Password Entry -->
+      <div class="auth-card-watermark" id="auth-logo-watermark">
+        <img src="assets/logo-watermark.png" alt="AutoSurveyX Logo Watermark">
+      </div>
+
+      <!-- Official Company Name Banner -->
+      <div class="auth-company-brand">
+        <img src="assets/company-name-dark.png" alt="AutoSurveyX — Intelligent Vehicle Survey Platform" class="auth-company-logo-img">
+      </div>
+
+      <div class="auth-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"></path></svg>
+        Secured Surveyor Portal
+      </div>
+      <h1 class="auth-title">Vehicle Surveyor Access</h1>
+      <p class="auth-subtitle">Log in to process vehicle documents, extract particulars, and generate lossless surveyor reports.</p>
+
+      <!-- Auth Tabs -->
+      <div class="auth-tabs" id="auth-main-tabs">
+        <button class="auth-tab-btn active" id="tab-btn-login">Sign In</button>
+        <button class="auth-tab-btn" id="tab-btn-register">Register Surveyor</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="form-login">
+        <div class="form-group">
+          <label class="form-label" for="login-email">Official Email Address</label>
+          <input type="email" id="login-email" class="form-input" placeholder="name@surveyor.com" required value="surveyor@surveyor.com">
+        </div>
+
+        <div class="form-group">
+          <div class="form-label-row">
+            <label class="form-label" for="login-password">Password</label>
+            <button type="button" class="link-action" id="btn-open-forgot">Forgot Password?</button>
+          </div>
+          <div class="password-input-wrap">
+            <input type="password" id="login-password" class="form-input" placeholder="••••••••" value="surveyor123">
+          </div>
+        </div>
+
+        <!-- OTP Column / Field for Two-Factor / Direct OTP Authentication -->
+        <div class="form-group" style="margin-top: 16px;">
+          <div class="form-label-row">
+            <label class="form-label" for="login-otp">Email OTP Verification</label>
+            <span id="login-otp-timer-badge" class="otp-countdown-pill hidden">01:00</span>
+          </div>
+          <div class="otp-input-group">
+            <input type="text" id="login-otp" class="form-input" placeholder="Enter 6-digit OTP" maxlength="6" autocomplete="one-time-code">
+            <button type="button" id="btn-send-login-otp" class="btn-otp-action">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              <span>Send OTP</span>
+            </button>
+          </div>
+          <div class="otp-helper-row">
+            <span id="login-otp-status" class="otp-status-text">OTP will be sent to your official email ID</span>
+          </div>
+        </div>
+
+        <div class="auth-actions-group">
+          <button type="submit" id="btn-submit-login" class="btn btn-primary" style="width: 100%;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+            Authorize & Enter Portal
+          </button>
+          <button type="button" id="btn-login-with-otp-only" class="btn-subtle-login">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            Sign In with Email OTP Only
+          </button>
+        </div>
+      </form>
+
+      <!-- Forgot / Reset Password Form (Interactive Multi-Step Recovery) -->
+      <form id="form-forgot" class="hidden">
+        <div class="auth-header-back">
+          <button type="button" id="btn-back-from-forgot" class="btn-back-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Back to Sign In
+          </button>
+        </div>
+
+        <div class="forgot-step-box">
+          <div class="forgot-step-header">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <span>Password Recovery & OTP Reset</span>
+          </div>
+          
+          <!-- Step 1: Enter Email -->
+          <div class="form-group">
+            <label class="form-label" for="forgot-email">Registered Email Address</label>
+            <div class="otp-input-group">
+              <input type="email" id="forgot-email" class="form-input" placeholder="name@surveyor.com" required>
+              <button type="button" id="btn-send-reset-otp" class="btn-otp-action">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                <span>Send Reset OTP</span>
+              </button>
+            </div>
+            <div class="otp-helper-row">
+              <span id="forgot-otp-status" class="otp-status-text">Enter your email and click Send Reset OTP</span>
+              <span id="forgot-otp-timer-badge" class="otp-countdown-pill hidden">01:00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Enter OTP & Set New Password -->
+        <div id="forgot-step-2-container" class="hidden">
+          <div class="form-group">
+            <label class="form-label" for="reset-otp">Received 6-Digit OTP</label>
+            <input type="text" id="reset-otp" class="form-input" placeholder="Enter 6-digit reset code" maxlength="6">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reset-new-password">New Password</label>
+            <input type="password" id="reset-new-password" class="form-input" placeholder="Minimum 6 characters">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reset-confirm-password">Confirm New Password</label>
+            <input type="password" id="reset-confirm-password" class="form-input" placeholder="Re-enter new password">
+          </div>
+
+          <button type="button" id="btn-submit-reset-password" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Verify OTP & Reset Password
+          </button>
+        </div>
+      </form>
+
+      <!-- Register Form -->
+      <form id="form-register" class="hidden">
+        <div class="form-group">
+          <label class="form-label" for="reg-name">Full Name</label>
+          <input type="text" id="reg-name" class="form-input" placeholder="Rajesh Kumar" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-email">Email Address</label>
+          <input type="email" id="reg-email" class="form-input" placeholder="rajesh@surveyor.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-password">Password</label>
+          <input type="password" id="reg-password" class="form-input" placeholder="At least 6 characters" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-license">IRDA / Surveyor License Number</label>
+          <input type="text" id="reg-license" class="form-input" placeholder="IRDA/SLA/2026/89412">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-role">Role</label>
+          <select id="reg-role" class="form-select">
+            <option value="surveyor">Field Surveyor / Loss Assessor</option>
+            <option value="admin">System Administrator</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+          Create Surveyor Account
+        </button>
+      </form>
+
+
+      <!-- Quick Demo Login Switcher -->
+      <div class="demo-accounts-box">
+        <div class="demo-title">
+          <span>⚡ One-Click Demo Access</span>
+          <span style="color: var(--primary-light); font-size: 11px;">Instant Login</span>
+        </div>
+        <div class="demo-grid">
+          <div class="demo-btn" id="btn-demo-surveyor">
+            <div class="demo-btn-role">
+              <span style="color: var(--primary-light);">●</span> Field Surveyor
+            </div>
+            <div class="demo-btn-email">surveyor@surveyor.com</div>
+          </div>
+          <div class="demo-btn" id="btn-demo-admin">
+            <div class="demo-btn-role">
+              <span style="color: #ef4444;">●</span> Chief Admin
+            </div>
+            <div class="demo-btn-email">admin@surveyor.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- APPLICATION MAIN CONTENT (LOGGED IN) - EXECUTIVE SURVEYOR STUDIO -->
+  <div class="app-layout-wrapper hidden" id="app-main-content">
+
+    <!-- EXECUTIVE LEFT SIDEBAR NAVIGATION (DESIGN 3) -->
+    <aside class="studio-sidebar" id="app-studio-sidebar">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <span class="sidebar-brand-badge">
+          <img src="assets/logo-transparent.png" alt="AutoSurveyX Logo" class="sidebar-logo-icon">
+          AutoSurveyX Studio
+        </span>
+        <span style="font-size: 10px; font-weight: 700; color: #818cf8; background: rgba(99, 102, 241, 0.15); padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(99, 102, 241, 0.3);">v2.4 Pro</span>
+      </div>
+
+      <!-- Navigation Links with Glowing Dots -->
+      <nav class="sidebar-nav">
+        <button type="button" class="sidebar-nav-item active" id="side-nav-wizard" data-tab="wizard">
+          <span class="sidebar-item-label">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            ACTIVE ASSESSMENTS
+          </span>
+          <span class="nav-indicator-dot dot-blue"></span>
+        </button>
+
+        <button type="button" class="sidebar-nav-item" id="side-nav-pending" data-tab="pending">
+          <span class="sidebar-item-label">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            PENDING CLAIMS
+          </span>
+          <span class="nav-indicator-dot dot-purple"></span>
+        </button>
+
+        <button type="button" class="sidebar-nav-item" id="side-nav-reports" data-tab="reports">
+          <span class="sidebar-item-label">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+            SURVEY REPORTS
+          </span>
+          <span class="nav-indicator-dot dot-blue"></span>
+        </button>
+
+        <button type="button" class="sidebar-nav-item" id="side-nav-tasks-files" data-tab="tasks-files">
+          <span class="sidebar-item-label">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+            MY TASKS & FILES
+          </span>
+          <span class="nav-indicator-dot dot-blue"></span>
+        </button>
+
+        <button type="button" class="sidebar-nav-item" id="side-nav-admin-dashboard" data-tab="admin-dashboard">
+          <span class="sidebar-item-label">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+            ADMIN DASHBOARD
+          </span>
+          <span class="nav-indicator-dot dot-purple"></span>
+        </button>
+      </nav>
+
+      <!-- Bottom Stats HUD Card (From Mockup 3) -->
+      <div class="stats-hud-card">
+        <div style="font-size: 10px; font-weight: 800; letter-spacing: 0.8px; color: #a78bfa; text-transform: uppercase;">Executive HUD</div>
+        <div class="stats-hud-item">
+          <div class="stats-hud-label">Open Claims</div>
+          <div class="stats-hud-val">12</div>
+        </div>
+        <div class="stats-hud-item">
+          <div class="stats-hud-label">Avg. Processing Time</div>
+          <div class="stats-hud-val">3 Days</div>
+        </div>
+        <div class="stats-hud-item">
+          <div class="stats-hud-label">AI Accuracy Rate</div>
+          <div class="stats-hud-val val-glow">98.2%</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN WORKSPACE CONTENT AREA -->
+    <main class="main-workspace-area">
+
+      <!-- VIEW 1: SURVEY INTAKE WIZARD -->
+      <section id="view-wizard">
+      <!-- Stepper Navigation -->
+      <div class="stepper-header">
+        <div class="step-item active" id="step-pill-1">
+          <div class="step-num">1</div>
+          <span>Case Details</span>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-item" id="step-pill-2">
+          <div class="step-num">2</div>
+          <span>Upload Documents</span>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-item" id="step-pill-3">
+          <div class="step-num">3</div>
+          <span>Select Template</span>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-item" id="step-pill-4">
+          <div class="step-num">4</div>
+          <span>Extraction & Studio</span>
+        </div>
+      </div>
+
+      <!-- Step 1: Case Details -->
+      <div id="wizard-step-1" class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary-light)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+              Step 1: Survey Case Setup
+            </h2>
+            <p class="card-description">Set up survey reference particulars and insurance company details.</p>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="case-number-input">Survey / Inspection Reference Number *</label>
+            <input type="text" id="case-number-input" class="form-input" placeholder="SURV-2026-1049" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="insurer-select">Insuring Company</label>
+            <select id="insurer-select" class="form-select">
+              <option value="The New India Assurance Co. Ltd.">The New India Assurance Co. Ltd.</option>
+              <option value="National Insurance Company Limited">National Insurance Company Limited</option>
+              <option value="ICICI Lombard General Insurance Co. Ltd.">ICICI Lombard General Insurance Co. Ltd.</option>
+              <option value="HDFC ERGO General Insurance Co. Ltd.">HDFC ERGO General Insurance Co. Ltd.</option>
+              <option value="Bajaj Allianz General Insurance Co. Ltd.">Bajaj Allianz General Insurance Co. Ltd.</option>
+              <option value="Tata AIG General Insurance Co. Ltd.">Tata AIG General Insurance Co. Ltd.</option>
+              <option value="United India Insurance Company Limited">United India Insurance Company Limited</option>
+              <option value="The Oriental Insurance Company Limited">The Oriental Insurance Company Limited</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="claim-number-input">Claim Intimation Number (Optional)</label>
+            <input type="text" id="claim-number-input" class="form-input" placeholder="CLM-902341">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="vehicle-reg-preview">Vehicle Reg. No (Auto-detected if left empty)</label>
+            <input type="text" id="vehicle-reg-preview" class="form-input" placeholder="e.g. MH-12-DE-1433">
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; margin-top: 24px;">
+          <button class="btn btn-primary" id="btn-step-next-to-upload">
+            Continue to Document Upload
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Upload Multiple Vehicle Documents -->
+      <div id="wizard-step-2" class="card hidden">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary-light)" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              Step 2: Upload Vehicle Documents (RC, DL, Insurance, Photos)
+            </h2>
+            <p class="card-description">Upload 2 or more files (PDF, Images, Word documents). Our AI parser extracts all vehicle details with zero field swapping.</p>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="btn-load-sample-docs">
+            ⚡ Pre-load Realistic Sample Documents
+          </button>
+        </div>
+
+        <!-- Reference Model Training Alert in Step 2 -->
+        <div id="step2-reference-banner" class="ref-step-banner hidden">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 36px; height: 36px; border-radius: var(--radius-full); background: rgba(167,139,250,0.25); display: flex; align-items: center; justify-content: center; color: #c4b5fd; flex-shrink: 0;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+            </div>
+            <div>
+              <div style="font-weight: 700; font-size: 13px; color: #ffffff;" id="step2-ref-title">Trained by Reference Model</div>
+              <div style="font-size: 12px; color: #cbd5e1;" id="step2-ref-desc">Required documents identified from your reference model:</div>
+            </div>
+          </div>
+          <div id="step2-ref-docs-pills" style="display: flex; gap: 6px; flex-wrap: wrap;"></div>
+        </div>
+
+        <!-- Drag & Drop Zone -->
+        <div class="upload-dropzone" id="docs-dropzone">
+          <input type="file" id="docs-file-input" multiple accept=".pdf,.jpg,.jpeg,.png,.webp,.docx,.doc,.txt" class="hidden">
+          <div class="dropzone-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          </div>
+          <h3 class="dropzone-title">Drag & Drop Vehicle Documents Here</h3>
+          <p class="dropzone-subtitle">or click to browse from your computer (Multiple files supported)</p>
+          <div class="dropzone-badges">
+            <span class="file-type-pill">Registration Certificate (RC Book)</span>
+            <span class="file-type-pill">Driving License (DL)</span>
+            <span class="file-type-pill">Insurance Policy / Cover Note</span>
+            <span class="file-type-pill">Pollution / PUC</span>
+            <span class="file-type-pill">Damage Inspection Photos</span>
+          </div>
+        </div>
+
+        <!-- Staged Files List -->
+        <div style="margin-top: 24px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span style="font-weight: 700; font-size: 14px; color: var(--text-main);">Staged Files for Intake</span>
+            <span class="badge badge-draft" id="staged-count-badge">0 Documents Staged</span>
+          </div>
+          <div id="staged-files-container" class="uploaded-files-list">
+            <div style="text-align:center; padding: 20px; color: var(--text-subtle); font-size: 13px;">No documents staged yet. Drag & drop files above or click to select.</div>
+          </div>
+
+          <!-- Initial Document Intelligence & Analysis Card (Shown as files are staged) -->
+          <div id="initial-data-analysis-card" class="initial-analysis-box hidden" style="margin-top: 20px;">
+            <div class="initial-analysis-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="live-dot-pulse"></span>
+                <span style="font-weight: 800; font-size: 13px; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px;">Initial Upload Data Analysis & Verification</span>
+              </div>
+              <span class="badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4);" id="analysis-readiness-badge">Analyzing Files...</span>
+            </div>
+
+            <div class="initial-analysis-grid">
+              <div class="analysis-stat-pill">
+                <span class="stat-lbl">Documents Classified:</span>
+                <span class="stat-val" id="stat-classified-docs">0 Types</span>
+              </div>
+              <div class="analysis-stat-pill">
+                <span class="stat-lbl">Primary Vehicle Record:</span>
+                <span class="stat-val" id="stat-rc-detected">Checking...</span>
+              </div>
+              <div class="analysis-stat-pill">
+                <span class="stat-lbl">Policy / Coverage:</span>
+                <span class="stat-val" id="stat-policy-detected">Checking...</span>
+              </div>
+              <div class="analysis-stat-pill">
+                <span class="stat-lbl">Driver License & ID:</span>
+                <span class="stat-val" id="stat-dl-detected">Checking...</span>
+              </div>
+            </div>
+
+            <div class="initial-detected-particulars" id="initial-detected-preview-row"></div>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; margin-top: 28px;">
+          <button class="btn btn-secondary" id="btn-step-back-to-case">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Back to Case Details
+          </button>
+          <button class="btn btn-primary" id="btn-step-next-to-template">
+            Continue to Template Selection
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Select or Upload Report Template -->
+      <div id="wizard-step-3" class="card hidden">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary-light)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              Step 3: Surveyor Report Template (.docx)
+            </h2>
+            <p class="card-description">Choose a pre-built professional template or upload your own Word (.docx) template with placeholders.</p>
+          </div>
+        </div>
+
+        <!-- Built-in Template Cards -->
+        <div class="templates-grid">
+          <div class="template-card selected" id="tpl-card-assessment">
+            <span class="template-badge">⭐ Recommended Standard</span>
+            <h3 class="template-title">Motor Final Survey & Loss Assessment</h3>
+            <p class="template-desc">Comprehensive 5-section survey report: Policy Details, Vehicle Particulars, Driver Details, Damage Assessment, and Surveyor Sign-Off.</p>
+            <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">Supported Tags:</div>
+            <div class="template-tags-preview">
+              <span class="tag-pill">{{owner_name}}</span>
+              <span class="tag-pill">{{vehicle_reg_no}}</span>
+              <span class="tag-pill">{{chassis_no}}</span>
+              <span class="tag-pill">{{engine_no}}</span>
+              <span class="tag-pill">{{make_model}}</span>
+              <span class="tag-pill">{{idv_amount}}</span>
+            </div>
+          </div>
+
+          <div class="template-card" id="tpl-card-spot">
+            <span class="template-badge" style="color: var(--success);">⚡ Rapid Inspection</span>
+            <h3 class="template-title">Vehicle Spot Inspection Report</h3>
+            <p class="template-desc">Immediate preliminary spot damage report for accident scene verification, vehicle registration marks, and odometer readings.</p>
+            <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">Supported Tags:</div>
+            <div class="template-tags-preview">
+              <span class="tag-pill">{{case_number}}</span>
+              <span class="tag-pill">{{vehicle_reg_no}}</span>
+              <span class="tag-pill">{{owner_name}}</span>
+              <span class="tag-pill">{{survey_place}}</span>
+              <span class="tag-pill">{{damage_summary}}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dual Slot Section: Template Selection & Reference Training -->
+        <div class="template-slots-container">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <div style="font-size: 14px; font-weight: 700; color: #ffffff;" id="custom-template-status">
+              Template & Reference Model Configuration:
+            </div>
+            <span style="font-size: 11px; color: #a78bfa; font-weight: 600;">✨ Reference File Trains Alignment & Required Docs</span>
+          </div>
+
+          <div class="template-slots-grid">
+            
+            <!-- SLOT 1: Custom Template Slot -->
+            <div class="slot-card" id="slot-card-template">
+              <div class="slot-header">
+                <span class="slot-badge">Slot 1 &bull; Target Template</span>
+                <h3 class="slot-title">Word Template (.docx)</h3>
+                <p class="slot-subtitle">Upload the actual Word document that will receive the extracted data (or keep standard template selected above).</p>
+              </div>
+              <div class="upload-dropzone slot-dropzone" id="template-dropzone">
+                <input type="file" id="template-file-input" accept=".docx" class="hidden">
+                <div class="dropzone-icon" style="width: 42px; height: 42px; margin-bottom: 8px;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                </div>
+                <div style="font-weight: 700; font-size: 14px; color: #ffffff;">Drop Custom .docx Template</div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Word template to be populated</div>
+              </div>
+              <div id="active-template-card-container" style="margin-top: 12px;"></div>
+            </div>
+
+            <!-- SLOT 2: Reference File / Model Report to Train Template -->
+            <div class="slot-card highlight-slot" id="slot-card-reference">
+              <div class="slot-header">
+                <span class="slot-badge badge-ai-training">Slot 2 &bull; Reference Model (Trains Template)</span>
+                <h3 class="slot-title">Upload Reference / Model File</h3>
+                <p class="slot-subtitle">Sample completed report that trains what documents to upload, what data to extract, where to place each field, and locks in single tab space alignment.</p>
+              </div>
+              <div class="upload-dropzone slot-dropzone reference-dropzone" id="reference-dropzone">
+                <input type="file" id="reference-file-input" accept=".docx,.doc,.pdf,.txt" class="hidden">
+                <div class="dropzone-icon ref-icon" style="width: 42px; height: 42px; margin-bottom: 8px;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+                </div>
+                <div style="font-weight: 700; font-size: 14px; color: #ffffff;">Drop Reference Model File (.docx, .pdf, .txt)</div>
+                <div style="font-size: 12px; color: #c4b5fd; margin-top: 4px;">Trains documents, data fields, and single tab spacing</div>
+              </div>
+              <div style="display: flex; gap: 8px; margin-top: 10px;">
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-load-sample-reference" style="width: 100%; font-size: 11px;">
+                  ⚡ Pre-load Oriental / National Reference Model
+                </button>
+              </div>
+              <div id="active-reference-card-container" style="margin-top: 12px;"></div>
+            </div>
+
+          </div>
+
+          <!-- Reference Model Training Details Box (Dynamically shown on upload) -->
+          <div id="reference-intelligence-container" class="reference-intelligence-box hidden" style="margin-top: 20px;"></div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; margin-top: 28px;">
+          <button class="btn btn-secondary" id="btn-step-back-to-upload">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Back to Documents
+          </button>
+          <button class="btn btn-success" id="btn-start-extraction">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            Execute Extraction & Open Studio
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: SIDE-BY-SIDE VERIFICATION STUDIO (DESIGN 3 COCKPIT) -->
+    <section id="view-studio" class="hidden">
+      <!-- Studio Workspace -->
+      <div id="studio-workspace">
+        <div class="ai-studio-frame">
+          <!-- Top Cockpit Header -->
+          <div class="ai-studio-header">
+            <div class="ai-studio-title-group">
+              <div style="width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, #2563eb, #8b5cf6); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 16px rgba(139, 92, 246, 0.45); flex-shrink: 0;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              </div>
+              <div>
+                <div class="ai-studio-title">
+                  AI EXTRACTION STUDIO
+                </div>
+                <div style="font-size: 11.5px; color: var(--text-muted); display: flex; align-items: center; gap: 8px; margin-top: 2px;">
+                  <span class="ai-studio-badge">Autonomous OCR & Verification</span>
+                  <span style="color: #64748b;">•</span>
+                  <span style="color: #c4b5fd;">Deep Layout & Semantic Entity Recognition</span>
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="ai-studio-status-chip">
+                <span style="width: 7px; height: 7px; border-radius: 50%; background: #38bdf8; box-shadow: 0 0 8px #38bdf8;"></span>
+                Zero-Collision Guard Active
+              </span>
+              <button class="btn btn-primary btn-sm btn-action-export-docx" id="btn-header-export-docx" title="Export as Word Document">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+                Word (.docx)
+              </button>
+              <button class="btn btn-secondary btn-sm btn-action-export-pdf" id="btn-header-export-pdf" title="Export / Print as PDF">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                PDF (.pdf)
+              </button>
+              <button class="btn btn-secondary btn-sm" id="btn-studio-back-to-wizard">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                Back to Wizard
+              </button>
+            </div>
+          </div>
+
+          <!-- Studio Verification Banner -->
+          <div class="verification-header-banner" style="margin: 16px 24px 0 24px;">
+            <div class="banner-left">
+              <div class="banner-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div>
+                <div class="banner-title">Zero-Alignment Collision Guard & Learned Reference Alignment Active</div>
+                <div class="banner-subtitle">Owner Name strictly segregated from Vehicle Make & Model; Single-tab space alignment enforced; OpenXML preserves 100% template layout.</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center; flex-shrink: 0; flex-wrap: wrap;">
+              <button class="btn btn-docx-download btn-action-export-docx" id="btn-quick-export-docx" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; padding: 10px 18px; border-radius: 8px; font-size: 13.5px; border: 1px solid rgba(255,255,255,0.25); cursor: pointer;" title="Export Word Document (.docx)">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+                Export Word (.docx)
+              </button>
+              <button class="btn btn-pdf-download btn-action-export-pdf" id="btn-quick-export-pdf" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; padding: 10px 18px; border-radius: 8px; font-size: 13.5px; border: 1px solid rgba(255,255,255,0.25); cursor: pointer;" title="Export / Print PDF Report (.pdf)">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                Export PDF (.pdf)
+              </button>
+            </div>
+          </div>
+
+          <!-- Executive Extracted Data Overview Bar (Primary Important Data Points) -->
+          <div class="executive-extracted-summary-bar" id="studio-executive-summary">
+            <div class="summary-item">
+              <span class="summary-lbl">Vehicle Reg No</span>
+              <span class="summary-val" id="sum-reg-no">Detecting...</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-lbl">Make & Model</span>
+              <span class="summary-val" id="sum-make-model">Detecting...</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-lbl">Owner / Insured</span>
+              <span class="summary-val" id="sum-owner-name">Detecting...</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-lbl">Policy Number</span>
+              <span class="summary-val" id="sum-policy-no">Detecting...</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-lbl">Insuring Company</span>
+              <span class="summary-val" id="sum-insurer">Detecting...</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-lbl">Chassis / VIN</span>
+              <span class="summary-val" id="sum-chassis-no">Detecting...</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-lbl">Survey Date</span>
+              <span class="summary-val" id="sum-survey-date">Detecting...</span>
+            </div>
+          </div>
+
+          <!-- Studio Cockpit View Switcher -->
+          <div class="studio-view-toggle-bar">
+            <div class="view-toggle-tabs">
+              <button type="button" class="view-toggle-btn active" id="btn-toggle-split-view" data-view="split">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="18" rx="1"></rect><rect x="13" y="3" width="8" height="18" rx="1"></rect></svg>
+                Side-by-Side Verification
+              </button>
+              <button type="button" class="view-toggle-btn" id="btn-toggle-fields-view" data-view="fields">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                All Extracted Fields (Full Width)
+              </button>
+              <button type="button" class="view-toggle-btn" id="btn-toggle-docs-view" data-view="docs">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                Document Inspector & OCR Stream
+              </button>
+            </div>
+          </div>
+
+
+          <!-- Two Column Studio Cockpit -->
+          <div class="studio-cockpit-grid">
+            
+            <!-- Left Pane: Document Preview -->
+            <div class="cockpit-pane cockpit-pane-left">
+              <div class="cockpit-pane-header">
+                <div class="cockpit-pane-title">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                  DOCUMENT PREVIEW
+                </div>
+                <span class="pill-uploaded">UPLOADED</span>
+              </div>
+              <div class="doc-tabs-header" id="doc-tabs-container">
+                <!-- Dynamically populated document tabs -->
+              </div>
+              <div class="doc-preview-viewport" id="doc-preview-viewport">
+                <div style="text-align: center; color: var(--text-subtle); padding: 40px;">No document selected</div>
+              </div>
+            </div>
+
+            <!-- Right Pane: Extracted Fields -->
+            <div class="cockpit-pane cockpit-pane-right">
+              <div class="cockpit-pane-header">
+                <div class="cockpit-pane-title">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                  EXTRACTED FIELDS
+                </div>
+                <span class="pill-ai-verified">AI Confidence 98.4%</span>
+              </div>
+
+              <!-- Hero Fields from Mockup 3 -->
+              <div class="studio-hero-fields">
+                <div class="hero-field-card">
+                  <div class="hero-field-top">
+                    <span class="hero-field-label">Policy Number</span>
+                    <span class="pill-ai-verified">AI Verified</span>
+                  </div>
+                  <div class="hero-field-val" id="hero-display-policy">12080031230100094182</div>
+                </div>
+
+                <div class="hero-field-card">
+                  <div class="hero-field-top">
+                    <span class="hero-field-label">Insured Name</span>
+                    <span class="pill-ai-verified">AI Verified</span>
+                  </div>
+                  <div class="hero-field-val" id="hero-display-insured">Rajesh V. Patil</div>
+                </div>
+
+                <div class="hero-field-card">
+                  <div class="hero-field-top">
+                    <span class="hero-field-label">Vehicle Make / Model</span>
+                    <span class="pill-ai-verified">AI Verified</span>
+                  </div>
+                  <div class="hero-field-val" id="hero-display-vehicle">MARUTI SUZUKI SWIFT VXI</div>
+                </div>
+
+                <div class="hero-field-card">
+                  <div class="hero-field-top">
+                    <span class="hero-field-label">License Plate (Reg No)</span>
+                    <span class="pill-ai-verified">AI Verified</span>
+                  </div>
+                  <div class="hero-field-val" id="hero-display-plate">MH-12-DE-1433</div>
+                </div>
+
+                <div class="hero-field-card">
+                  <div class="hero-field-top">
+                    <span class="hero-field-label">Date of Accident / Survey</span>
+                    <span class="pill-needs-review">Needs Review</span>
+                  </div>
+                  <div class="hero-field-val" id="hero-display-date">23/09/2026</div>
+                </div>
+
+                <div class="hero-field-card">
+                  <div class="hero-field-top">
+                    <span class="hero-field-label">Damage Description</span>
+                    <span class="pill-needs-review">Needs Review</span>
+                  </div>
+                  <div class="hero-field-val" id="hero-display-damage" style="font-size: 12.5px; line-height: 1.4;">Accidental collision impact</div>
+                </div>
+              </div>
+
+              <!-- Categorized Form Fields Sections -->
+              <div style="display: flex; flex-direction: column; gap: 14px;">
+
+            <!-- Section 1: Vehicle Particulars -->
+            <div class="field-section">
+              <div class="field-section-title">
+                <span>1. Vehicle Particulars</span>
+                <span class="confidence-chip conf-high">Cross-Checked</span>
+              </div>
+              <div class="field-grid-2">
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Registration Number *</label>
+                    <span class="confidence-chip conf-high" id="conf-field-reg-no">Pattern Verified</span>
+                  </div>
+                  <input type="text" id="field-reg-no" class="form-input verified-input" placeholder="e.g. MH-12-DE-1433">
+                </div>
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Make & Model *</label>
+                    <span class="confidence-chip conf-high" id="conf-field-make-model">Semantic Match</span>
+                  </div>
+                  <input type="text" id="field-make-model" class="form-input verified-input" placeholder="e.g. MARUTI SUZUKI SWIFT VXI">
+                </div>
+              </div>
+
+              <div class="field-grid-2" style="margin-top: 12px;">
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Chassis / VIN Number (17 Chars) *</label>
+                    <span class="confidence-chip conf-high" id="conf-field-chassis-no">VIN Verified</span>
+                  </div>
+                  <input type="text" id="field-chassis-no" class="form-input verified-input" style="font-family: var(--font-mono);" placeholder="MA3EWA12S00984123">
+                </div>
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Engine Number *</label>
+                    <span class="confidence-chip conf-high" id="conf-field-engine-no">Verified</span>
+                  </div>
+                  <input type="text" id="field-engine-no" class="form-input verified-input" style="font-family: var(--font-mono);" placeholder="K12MN8923411">
+                </div>
+              </div>
+
+              <div class="field-grid-3" style="margin-top: 12px;">
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Mfg. Year</label>
+                    <span class="confidence-chip conf-high" id="conf-field-mfg-year">Verified</span>
+                  </div>
+                  <input type="text" id="field-mfg-year" class="form-input verified-input" placeholder="2021">
+                </div>
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Reg. Date</label>
+                    <span class="confidence-chip conf-high" id="conf-field-reg-date">Verified</span>
+                  </div>
+                  <input type="text" id="field-reg-date" class="form-input verified-input" placeholder="18/04/2021">
+                </div>
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Fuel Type</label>
+                    <span class="confidence-chip conf-high" id="conf-field-fuel-type">Verified</span>
+                  </div>
+                  <input type="text" id="field-fuel-type" class="form-input verified-input" placeholder="Petrol">
+                </div>
+              </div>
+
+              <div class="field-grid-3" style="margin-top: 12px;">
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Vehicle Class</label>
+                    <span class="confidence-chip conf-high" id="conf-field-vehicle-class">Verified</span>
+                  </div>
+                  <input type="text" id="field-vehicle-class" class="form-input verified-input" placeholder="LMV (Private Motor Car)">
+                </div>
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Color</label>
+                    <span class="confidence-chip conf-high" id="conf-field-color">Verified</span>
+                  </div>
+                  <input type="text" id="field-color" class="form-input verified-input" placeholder="Arctic White">
+                </div>
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Odometer Reading</label>
+                    <span class="confidence-chip conf-na" id="conf-field-odometer">Not in Docs (NA)</span>
+                  </div>
+                  <input type="text" id="field-odometer" class="form-input verified-input" placeholder="42,150 KM">
+                </div>
+              </div>
+
+              <div class="field-grid-2" style="margin-top: 12px;">
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Seating Capacity</label>
+                    <span class="confidence-chip conf-high" id="conf-field-seating">Verified</span>
+                  </div>
+                  <input type="text" id="field-seating" class="form-input verified-input" placeholder="5 In All">
+                </div>
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Cubic Capacity (CC)</label>
+                    <span class="confidence-chip conf-high" id="conf-field-cubic-cap">Verified</span>
+                  </div>
+                  <input type="text" id="field-cubic-cap" class="form-input verified-input" placeholder="1197 CC">
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Owner & Driver Particulars -->
+            <div class="field-section">
+              <div class="field-section-title">
+                <span>2. Insured / Owner & Driver Details</span>
+                <span class="confidence-chip conf-high">Separate & Strict</span>
+              </div>
+              <div class="field-grid-2">
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Registered Owner Name *</label>
+                    <span class="confidence-chip conf-high" id="conf-field-owner-name">Owner Verified</span>
+                  </div>
+                  <input type="text" id="field-owner-name" class="form-input verified-input" placeholder="e.g. Rajesh V. Patil">
+                </div>
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Driver's Name</label>
+                    <span class="confidence-chip conf-high" id="conf-field-driver-name">Driver Verified</span>
+                  </div>
+                  <input type="text" id="field-driver-name" class="form-input verified-input" placeholder="e.g. Rajesh V. Patil">
+                </div>
+              </div>
+
+              <div class="field-grid-2" style="margin-top: 12px;">
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Driving License Number</label>
+                    <span class="confidence-chip conf-high" id="conf-field-dl-no">DL Pattern Matched</span>
+                  </div>
+                  <input type="text" id="field-dl-no" class="form-input verified-input" style="font-family: var(--font-mono);" placeholder="MH-12-2015-0048921">
+                </div>
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">DL Validity</label>
+                    <span class="confidence-chip conf-high" id="conf-field-dl-validity">Verified</span>
+                  </div>
+                  <input type="text" id="field-dl-validity" class="form-input verified-input" placeholder="Valid Upto 11/07/2035">
+                </div>
+              </div>
+
+              <div class="field-grid-2" style="margin-top: 12px;">
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">DL Class / Authorization</label>
+                    <span class="confidence-chip conf-na" id="conf-field-dl-type">Not in Docs (NA)</span>
+                  </div>
+                  <input type="text" id="field-dl-type" class="form-input verified-input" placeholder="e.g. LMV-NT / Transport">
+                </div>
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Driver Relation to Owner</label>
+                    <span class="confidence-chip conf-na" id="conf-field-driver-relation">Not in Docs (NA)</span>
+                  </div>
+                  <input type="text" id="field-driver-relation" class="form-input verified-input" placeholder="e.g. Self / Paid Driver / NA">
+                </div>
+              </div>
+
+              <div class="field-wrapper" style="margin-top: 12px;">
+                <div class="field-label-row">
+                  <label class="field-lbl">Insured / Owner Address</label>
+                  <span class="confidence-chip conf-high" id="conf-field-owner-address">Verified</span>
+                </div>
+                <input type="text" id="field-owner-address" class="form-input verified-input" placeholder="Flat 402, Shanti Vihar, Baner Road, Pune">
+              </div>
+            </div>
+
+            <!-- Section 3: Insurance Policy Particulars -->
+            <div class="field-section">
+              <div class="field-section-title">
+                <span>3. Insurance & Policy Particulars</span>
+                <span class="confidence-chip conf-high">Policy Matched</span>
+              </div>
+              <div class="field-grid-2">
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Insuring Company</label>
+                    <span class="confidence-chip conf-high" id="conf-field-insurance-company">Verified</span>
+                  </div>
+                  <input type="text" id="field-insurance-company" class="form-input verified-input" placeholder="The New India Assurance Co. Ltd.">
+                </div>
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Policy Number</label>
+                    <span class="confidence-chip conf-high" id="conf-field-policy-no">Policy Matched</span>
+                  </div>
+                  <input type="text" id="field-policy-no" class="form-input verified-input" style="font-family: var(--font-mono);" placeholder="12080031230100094182">
+                </div>
+              </div>
+
+              <div class="field-grid-3" style="margin-top: 12px;">
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Period of Insurance</label>
+                    <span class="confidence-chip conf-high" id="conf-field-policy-period">Verified</span>
+                  </div>
+                  <input type="text" id="field-policy-period" class="form-input verified-input" placeholder="18/04/2025 To 17/04/2026">
+                </div>
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">IDV Amount</label>
+                    <span class="confidence-chip conf-high" id="conf-field-idv-amount">Verified</span>
+                  </div>
+                  <input type="text" id="field-idv-amount" class="form-input verified-input" placeholder="₹ 5,80,000">
+                </div>
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Claim Ref No</label>
+                    <span class="confidence-chip conf-high" id="conf-field-claim-no">Verified</span>
+                  </div>
+                  <input type="text" id="field-claim-no" class="form-input verified-input" placeholder="CLM-2026-90812">
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 4: Damage Assessment & Remarks -->
+            <div class="field-section">
+              <div class="field-section-title">
+                <span>4. Survey Observations & Declaration</span>
+                <span class="confidence-chip conf-high">Verified</span>
+              </div>
+              <div class="field-grid-2">
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Date of Survey</label>
+                    <span class="confidence-chip conf-high" id="conf-field-survey-date">Current Date</span>
+                  </div>
+                  <input type="text" id="field-survey-date" class="form-input verified-input">
+                </div>
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Inspection Place</label>
+                    <span class="confidence-chip conf-high" id="conf-field-survey-place">Verified</span>
+                  </div>
+                  <input type="text" id="field-survey-place" class="form-input verified-input" placeholder="Authorized Workshop / Dealer">
+                </div>
+              </div>
+
+              <div class="field-wrapper" style="margin-top: 12px;">
+                <div class="field-label-row">
+                  <label class="field-lbl">Damage Observations Summary</label>
+                  <span class="confidence-chip conf-high" id="conf-field-damage-summary">Documented</span>
+                </div>
+                <textarea id="field-damage-summary" class="form-textarea verified-input" rows="2" placeholder="Accidental collision causing front end damages..."></textarea>
+              </div>
+
+              <div class="field-grid-3" style="margin-top: 12px;">
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Surveyor Name</label>
+                    <span class="confidence-chip conf-high" id="conf-field-surveyor-name">Verified</span>
+                  </div>
+                  <input type="text" id="field-surveyor-name" class="form-input verified-input">
+                </div>
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">IRDA License No</label>
+                    <span class="confidence-chip conf-na" id="conf-field-surveyor-license">Not in Docs (NA)</span>
+                  </div>
+                  <input type="text" id="field-surveyor-license" class="form-input verified-input">
+                </div>
+                <div class="field-wrapper">
+                  <div class="field-label-row">
+                    <label class="field-lbl">Assessment Status</label>
+                    <span class="confidence-chip conf-high" id="conf-field-assessment-status">Verified</span>
+                  </div>
+                  <input type="text" id="field-assessment-status" class="form-input verified-input" value="Survey Completed & Inspected">
+                </div>
+              </div>
+            </div>
+
+              <!-- Studio Action Toolbar from Mockup 3 -->
+              <div class="studio-action-toolbar">
+                <button type="button" class="btn-edit-details" id="btn-studio-edit-mode">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                  EDIT DETAILS
+                </button>
+                <button type="button" class="btn-approve-submit" id="btn-studio-approve-submit">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  APPROVE & SUBMIT
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Studio Export Stage (Success State) -->
+      <div id="studio-export-success" class="card export-card hidden">
+        <div class="export-hero-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        </div>
+        <h2 class="export-title">Survey Report Generated Successfully!</h2>
+        <p class="export-subtitle">
+          All extracted vehicle particulars have been written into the template without alignment errors. The report is ready in both Microsoft Word (.docx) and PDF formats.
+        </p>
+        <div class="export-buttons-group">
+          <button class="btn btn-docx-download" id="btn-download-docx-final">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+            Download Word Report (.docx)
+          </button>
+          <button class="btn btn-pdf-download" id="btn-download-pdf-final">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            Download / Print PDF Report
+          </button>
+          <button class="btn btn-secondary" id="btn-start-another-survey">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            Start Another Survey Case
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: PENDING CLAIMS (ONLY DRAFTS & INCOMPLETE TASKS) -->
+    <section id="view-pending" class="card hidden">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            Pending Claims & Incomplete Tasks
+          </h2>
+          <p class="card-description">Draft surveys, pending document uploads, OCR reviews, and assessments awaiting final review & report compilation.</p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="badge badge-draft-pending" id="badge-pending-count">0 Incomplete</span>
+          <button class="btn btn-primary btn-sm" id="btn-pending-new-survey">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            New Assessment
+          </button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Case Reference</th>
+              <th>Vehicle Reg No</th>
+              <th>Insured / Owner</th>
+              <th>Current Stage</th>
+              <th>Last Updated</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="pending-surveys-tbody">
+            <tr><td colspan="7" style="text-align: center; padding: 32px; color: var(--text-subtle);">Loading pending claims...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- VIEW 4: SURVEY REPORTS (ONLY COMPLETED TASKS) -->
+    <section id="view-reports" class="card hidden">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><polyline points="9 15 12 12 15 15"></polyline></svg>
+            Finalized Survey Reports Archive
+          </h2>
+          <p class="card-description">All completed loss assessment reports with finalized Microsoft Word (.docx) templates and audit PDF exports.</p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="badge badge-past" id="badge-reports-count">0 Completed</span>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Case Number</th>
+              <th>Vehicle Reg No</th>
+              <th>Insured Name</th>
+              <th>Insuring Company</th>
+              <th>Completion Date</th>
+              <th>Target Template</th>
+              <th>Report Downloads</th>
+            </tr>
+          </thead>
+          <tbody id="completed-reports-tbody">
+            <tr><td colspan="8" style="text-align: center; padding: 32px; color: var(--text-subtle);">Loading completed survey reports...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- VIEW 5: MY TASKS & FILES (ORIGINAL CASE PARTICULARS & SOURCE FILES) -->
+    <section id="view-tasks-files" class="card hidden">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+            My Tasks, Original Case Particulars & Source Files
+          </h2>
+          <p class="card-description">Authentic vehicle loss assessment particulars and original records verified directly inside the web application, linked to uploaded documents.</p>
+        </div>
+      </div>
+
+      <!-- Task Selector & Original Data Metrics Header -->
+      <div class="tasks-files-header-card">
+        <div class="survey-selector-wrapper">
+          <label style="font-size: 12px; font-weight: 700; color: #a78bfa; text-transform: uppercase;">Select Task:</label>
+          <select id="tasks-files-survey-select" class="form-select" style="min-width: 280px; font-weight: 600;">
+            <option value="">Select a survey case...</option>
+          </select>
+        </div>
+        <div class="comparison-stats-pills">
+          <div class="comp-stat-pill">
+            <span class="comp-stat-label">Verified Fields:</span>
+            <span class="comp-stat-num" id="comp-stat-fields-count">27 / 27</span>
+          </div>
+          <div class="comp-stat-pill">
+            <span class="comp-stat-label">Data Authenticity:</span>
+            <span class="comp-stat-num" id="comp-stat-integrity" style="color: #38bdf8;">100% Original</span>
+          </div>
+          <div class="comp-stat-pill">
+            <span class="comp-stat-label">Attached Files:</span>
+            <span class="comp-stat-num" id="comp-stat-files-count">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Original Verified Web App Data Table -->
+      <div style="margin-bottom: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="font-family: var(--font-heading); font-size: 15px; font-weight: 800; color: #ffffff;">
+            📋 Original Verified Web App Particulars
+          </h3>
+          <span style="font-size: 11px; color: var(--text-muted);">Authentic operational data processed and verified in web application</span>
+        </div>
+        <div class="table-responsive">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th style="width: 5%;">#</th>
+                <th style="width: 28%;">Field / Parameter</th>
+                <th style="width: 42%;">Original Web App Value (Verified)</th>
+                <th style="width: 15%;">Category</th>
+                <th style="width: 10%; text-align: center;">Status</th>
+              </tr>
+            </thead>
+            <tbody id="comparison-tbody">
+              <tr><td colspan="5" style="text-align: center; padding: 28px; color: var(--text-subtle);">Select a task to view original verified particulars</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Associated Source Files Section -->
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="font-family: var(--font-heading); font-size: 15px; font-weight: 800; color: #ffffff;">
+            📂 Attached Source Files & Output Templates
+          </h3>
+          <span style="font-size: 11px; color: var(--text-muted);" id="task-files-count-badge">0 Files attached</span>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Document Name & MIME</th>
+                <th>Type</th>
+                <th>File Size</th>
+                <th>Uploaded At</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="task-files-tbody">
+              <tr><td colspan="6" style="text-align: center; padding: 24px; color: var(--text-subtle);">No documents attached to this task</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 6: ADMIN OPERATIONS EXECUTIVE DASHBOARD (PAST & PRESENT) -->
+    <section id="view-admin-dashboard" class="card hidden">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary-light)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+            Admin Operations Executive Dashboard
+          </h2>
+          <p class="card-description">Full lifecycle monitoring across Past Tasks (Performed 24 hrs before) and Present Tasks (Active drafts & assessments within 24 hrs).</p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <button class="btn btn-secondary btn-sm" id="btn-refresh-admin-dashboard">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            Refresh
+          </button>
+        </div>
+      </div>
+
+      <!-- 3 KPI Cards: Past (>24h), Present (<24h), Total -->
+      <div class="dashboard-kpi-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="kpi-card">
+          <div class="kpi-card-header">
+            <span class="kpi-title">Past Tasks (Performed > 24 hrs ago)</span>
+            <div class="kpi-icon-wrap" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+          </div>
+          <div class="kpi-val" id="kpi-past-count">0</div>
+          <div class="kpi-sub" style="color: #34d399;">✓ Historical loss assessments performed before 24h</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-card-header">
+            <span class="kpi-title">Present Tasks (Active & < 24 hrs)</span>
+            <div class="kpi-icon-wrap" style="background: rgba(37, 99, 235, 0.15); color: #60a5fa;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+          </div>
+          <div class="kpi-val" id="kpi-present-count">0</div>
+          <div class="kpi-sub" style="color: #60a5fa;">⚡ Active drafts & assessments within last 24h</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-card-header">
+            <span class="kpi-title">Total Operations Volume</span>
+            <div class="kpi-icon-wrap" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            </div>
+          </div>
+          <div class="kpi-val" id="kpi-total-count">0</div>
+          <div class="kpi-sub" style="color: #38bdf8;">All verified original tasks across operations</div>
+        </div>
+      </div>
+
+      <!-- Lifecycle Stage Filter Tabs -->
+      <div class="lifecycle-tabs-bar">
+        <button type="button" class="lifecycle-tab-btn active" data-lifecycle="ALL">
+          <span>All Tasks</span>
+          <span class="tab-count-pill" id="pill-all-count">0</span>
+        </button>
+        <button type="button" class="lifecycle-tab-btn" data-lifecycle="PAST">
+          <span style="color: #34d399;">●</span>
+          <span>Past Tasks (> 24 hrs ago)</span>
+          <span class="tab-count-pill" id="pill-past-count">0</span>
+        </button>
+        <button type="button" class="lifecycle-tab-btn" data-lifecycle="PRESENT">
+          <span style="color: #60a5fa;">●</span>
+          <span>Present Tasks (Active / < 24 hrs)</span>
+          <span class="tab-count-pill" id="pill-present-count">0</span>
+        </button>
+      </div>
+
+      <!-- Unified Tasks Timeline Table -->
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Case Reference</th>
+              <th>Vehicle & Insured</th>
+              <th>Insurer / Location</th>
+              <th>Surveyor</th>
+              <th>Lifecycle Stage</th>
+              <th>Timeline / Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-dashboard-tbody">
+            <tr><td colspan="8" style="text-align: center; padding: 32px; color: var(--text-subtle);">Loading lifecycle tasks...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    </main>
+  </div>
+
+  <!-- FILE PREVIEW MODAL -->
+  <div class="modal-overlay hidden" id="file-preview-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: #ffffff;" id="modal-file-title">File Inspector</h3>
+        <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-file-body">
+        <!-- Content dynamically injected -->
+      </div>
+    </div>
+  </div>
+  <!-- REFERENCE MODEL MAPPING MODAL -->
+  <div class="modal-overlay hidden" id="modal-reference-mapping">
+    <div class="modal-content" style="max-width: 720px; max-height: 85vh; display: flex; flex-direction: column;">
+      <div class="modal-header">
+        <div>
+          <h3 style="font-family: var(--font-heading); font-size: 17px; font-weight: 800; color: #ffffff;">
+            Reference Model Intelligence & Alignment Inspector
+          </h3>
+          <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">
+            Trained data requirements, mapped locations, and single tab alignment rules extracted from your reference file.
+          </p>
+        </div>
+        <button class="modal-close-btn" id="btn-close-ref-modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-ref-body" style="overflow-y: auto; padding: 20px; flex: 1;">
+        <!-- Content dynamically injected -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Client Application Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/wizard.js"></script>
+  <script src="js/studio.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

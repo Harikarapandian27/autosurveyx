@@ -1,0 +1,33 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js",
+    "generate-templates": "node backend/templates/generate_templates.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "docx": "^9.7.1",
+    "docxtemplater": "^3.71.0",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "localtunnel": "^2.0.2",
+    "mammoth": "^1.12.3",
+    "multer": "^2.4.0",
+    "nodemailer": "^10.0.10",
+    "pdf-parse": "^2.4.5",
+    "pizzip": "^3.3.0",
+    "tesseract.js": "^7.0.0"
+  }
+}
