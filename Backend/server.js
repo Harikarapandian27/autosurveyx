@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const config = require('./config');
-
+const tunnel=require('./services/tunnel');
 const authRoutes = require('./routes/auth');
 const surveyRoutes = require('./routes/surveys');
 const adminRoutes = require('./routes/admin');
@@ -51,8 +51,6 @@ app.use((err, req, res, next) => {
 
 // Public URL status endpoint
 app.get('/api/public-url', (req, res) => {
-  const tunnel = require('./services/tunnel');
-  res.json({
     success: true,
     publicUrl: tunnel.getPublicUrl(),
     localPort: config.PORT,
@@ -74,7 +72,6 @@ const server = app.listen(config.PORT, () => {
   console.log(`=======================================================`);
 
   // Launch Cloudflare global public tunnel
-  const tunnel = require('./services/tunnel');
   tunnel.start(config.PORT);
 });
 
