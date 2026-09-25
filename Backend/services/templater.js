@@ -3,7 +3,7 @@ const path = require('path');
 const PizZip = require('pizzip');
 const Docxtemplater = require('docxtemplater');
 const config = require('../config');
-const db = require('../models/db');
+const db = require('../db');
 
 // ReportTemplater helper functions for OpenXML semantic table and paragraph overwriting
 
