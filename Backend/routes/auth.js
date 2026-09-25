@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const db = require('../models/db');
+const db = require('../db');
 const { createToken, requireAuth } = require('../middleware/auth');
 const audit = require('../services/audit');
 const config = require('../config');
