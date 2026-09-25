@@ -1,4 +1,4 @@
-const db = require('../models/db');
+const db = require('../db');
 
 class AuditService {
   log(req, action, details = {}) {
