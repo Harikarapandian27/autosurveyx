@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
-const config = require('../config');
+const config = require('./config');
 
 class JsonDatabase {
   constructor() {
