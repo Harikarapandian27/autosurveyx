@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config');
-const db = require('../models/db');
+const db = require('../db');
 
 function createToken(user) {
   return jwt.sign(
