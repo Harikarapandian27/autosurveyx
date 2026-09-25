@@ -51,6 +51,7 @@ app.use((err, req, res, next) => {
 
 // Public URL status endpoint
 app.get('/api/public-url', (req, res) => {
+  res.join({
     success: true,
     publicUrl: tunnel.getPublicUrl(),
     localPort: config.PORT,
